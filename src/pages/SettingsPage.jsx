@@ -25,7 +25,6 @@ const SettingsPage = () => {
     company: '',
     phone: '',
     theme: 'light',
-    language: 'fr',
     notifications_email: true,
     notifications_push: true,
     auto_refresh: true,
@@ -204,7 +203,6 @@ const SettingsPage = () => {
       company: '',
       phone: '',
       theme: 'light',
-      language: 'fr',
       notifications_email: true,
       notifications_push: true,
       auto_refresh: true,
@@ -331,22 +329,7 @@ const SettingsPage = () => {
               </Select>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="language">Langue</Label>
-              <Select 
-                value={userSettings.language} 
-                onValueChange={(value) => handleUserSettingChange('language', value)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Sélectionner une langue" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="fr">Français</SelectItem>
-                  <SelectItem value="en">English</SelectItem>
-                  <SelectItem value="es">Español</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+            
 
             <div className="space-y-2">
               <Label htmlFor="defaultView">Vue par défaut</Label>

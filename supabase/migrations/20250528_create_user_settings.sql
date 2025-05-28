@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS public.user_settings (
     company TEXT DEFAULT '',
     phone TEXT DEFAULT '',
     theme TEXT DEFAULT 'light' CHECK (theme IN ('light', 'dark', 'auto')),
-    language TEXT DEFAULT 'fr' CHECK (language IN ('fr', 'en', 'es')),
     notifications_email BOOLEAN DEFAULT true,
     notifications_push BOOLEAN DEFAULT true,
     auto_refresh BOOLEAN DEFAULT true,
