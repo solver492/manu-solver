@@ -1,0 +1,95 @@
+# Architecture de la Base de Données - ManutentionPro
+
+Ce document détaille la structure des tables de la base de données Supabase utilisée par l'application ManutentionPro.
+
+## Schéma Général
+
+L'application utilise principalement deux tables personnalisées pour gérer les sites clients et les envois de manutentionnaires, en plus des tables gérées par Supabase pour l'authentification (`auth.users`, etc.).
+
+---
+
+## 1. Table: `client_sites`
+
+Cette table stocke les informations relatives aux différents sites clients où les manutentionnaires peuvent être envoyés.
+
+| Nom de la Colonne | Type de Donnée (PostgreSQL) | Contraintes        | Description                                                                 |
+|--------------------|-----------------------------|--------------------|-----------------------------------------------------------------------------|
+| `id`               | `UUID`                      | `PRIMARY KEY`, `DEFAULT gen_random_uuid()` | Identifiant unique pour chaque site client. Généré automatiquement.         |
+| `name`             | `TEXT`                      | `NOT NULL`         | Nom du site client (ex: "AZUR", "IRIS").                                    |
+| `address`          | `TEXT`                      | `NOT NULL`         | Adresse complète du site client.                                            |
+| `created_at`       | `TIMESTAMPTZ`               | `DEFAULT NOW()`    | Horodatage de la création de l'enregistrement du site. Avec fuseau horaire. |
+
+### Exemple de Données:
+```json
+{
+  "id": "a1f7b3a0-0e7e-4b0f-8c2a-1d9e8f6c5b4d",
+  "name": "AZUR",
+  "address": "Centre Commercial Agdal, Avenue Mohammed VI, Rabat",
+  "created_at": "2025-05-28T10:00:00.000Z"
+}
+```
+
+---
+
+## 2. Table: `dispatches`
+
+Cette table enregistre chaque opération d'envoi de manutentionnaires vers un site client.
+
+| Nom de la Colonne | Type de Donnée (PostgreSQL) | Contraintes                                  | Description                                                                                                |
+|--------------------|-----------------------------|----------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| `id`               | `UUID`                      | `PRIMARY KEY`, `DEFAULT gen_random_uuid()`   | Identifiant unique pour chaque envoi. Généré automatiquement.                                              |
+| `site_id`          | `UUID`                      | `REFERENCES client_sites(id) ON DELETE CASCADE` | Clé étrangère liant l'envoi au site client concerné. Si un site est supprimé, ses envois le sont aussi. |
+| `quantity`         | `INTEGER`                   | `NOT NULL`                                   | Nombre de manutentionnaires envoyés lors de cette opération.                                               |
+| `comment`          | `TEXT`                      |                                              | Commentaire optionnel ajouté lors de l'envoi (ex: "Besoin urgent", "Équipe de nuit").                     |
+| `user_id`          | `UUID`                      | `REFERENCES auth.users(id)`                  | Clé étrangère liant l'envoi à l'utilisateur (de la table `auth.users` de Supabase) qui a effectué l'envoi. |
+| `username`         | `TEXT`                      |                                              | Nom d'utilisateur (ou email/identifiant) de la personne ayant effectué l'envoi. Stocké pour un accès rapide. |
+| `created_at`       | `TIMESTAMPTZ`               | `DEFAULT NOW()`                              | Horodatage précis de l'envoi. Avec fuseau horaire.                                                         |
+
+### Exemple de Données:
+```json
+{
+  "id": "c5b2a1f0-1e8d-4c3b-9a7e-2f0d9e8c7b6a",
+  "site_id": "a1f7b3a0-0e7e-4b0f-8c2a-1d9e8f6c5b4d", // Référence l'ID du site AZUR
+  "quantity": 5,
+  "comment": "Équipe pour inventaire",
+  "user_id": "f4d3e2c1-0b9a-5a8f-7e6d-1c2b3a4f5e6d", // Référence l'ID de l'utilisateur dans auth.users
+  "username": "admin@example.com",
+  "created_at": "2025-05-28T14:30:00.000Z"
+}
+```
+
+---
+
+## 3. Tables d'Authentification Supabase (Ex: `auth.users`)
+
+Supabase gère automatiquement les tables nécessaires à l'authentification. La table la plus pertinente pour nos relations est `auth.users`.
+
+| Nom de la Colonne (Pertinent) | Type de Donnée (PostgreSQL) | Description                                     |
+|-------------------------------|-----------------------------|-------------------------------------------------|
+| `id`                          | `UUID`                      | Identifiant unique de l'utilisateur.            |
+| `email`                       | `TEXT`                      | Adresse email de l'utilisateur (utilisée pour la connexion). |
+| `raw_user_meta_data`          | `JSONB`                     | Peut contenir des métadonnées comme `username`. |
+| ... autres colonnes gérées par Supabase ... |                             |                                                 |
+
+---
+
+## Relations Clés
+
+*   **`dispatches.site_id`** ---FK---> **`client_sites.id`**: Chaque envoi est lié à un site client spécifique.
+*   **`dispatches.user_id`** ---FK---> **`auth.users.id`**: Chaque envoi est lié à l'utilisateur qui l'a enregistré.
+
+---
+
+## Politiques de Sécurité au Niveau des Lignes (RLS)
+
+Des politiques RLS sont (ou devraient être) mises en place pour sécuriser l'accès aux données:
+
+*   **`client_sites`**:
+    *   Les utilisateurs authentifiés peuvent lire tous les sites.
+    *   (Optionnel) Seuls certains rôles (ex: administrateurs) peuvent créer, mettre à jour ou supprimer des sites.
+*   **`dispatches`**:
+    *   Les utilisateurs authentifiés peuvent lire tous les envois (pour l'historique général et les rapports).
+    *   Les utilisateurs authentifiés peuvent créer des envois (l'`user_id` est automatiquement lié à leur propre ID).
+    *   (Optionnel) Des politiques plus restrictives pourraient limiter la modification/suppression d'envois à leur créateur ou à des administrateurs.
+
+Ce document devrait vous donner une bonne vue d'ensemble de la structure de la base de données nécessaire au bon fonctionnement de l'application ManutentionPro.
