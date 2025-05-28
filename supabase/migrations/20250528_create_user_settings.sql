@@ -1,46 +1,53 @@
--- Create user_settings table
-create table if not exists public.user_settings (
-  id uuid default uuid_generate_v4() primary key,
-  user_id uuid references auth.users(id) on delete cascade not null unique,
-  email_notifications boolean default false,
-  push_notifications boolean default false,
-  notification_frequency text default 'immediate' check (notification_frequency in ('immediate', 'hourly', 'daily', 'weekly')),
-  theme text default 'light' check (theme in ('light', 'dark', 'system')),
-  font_size text default 'medium' check (font_size in ('small', 'medium', 'large')),
-  default_date_range text default 'month' check (default_date_range in ('week', 'month', 'quarter', 'year')),
-  auto_export boolean default false,
-  export_format text default 'pdf' check (export_format in ('pdf', 'excel', 'csv')),
-  created_at timestamptz default now(),
-  updated_at timestamptz default now()
+
+-- Création de la table user_settings pour les paramètres utilisateur
+CREATE TABLE IF NOT EXISTS user_settings (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+    full_name TEXT,
+    company TEXT,
+    phone TEXT,
+    address TEXT,
+    theme TEXT DEFAULT 'light' CHECK (theme IN ('light', 'dark', 'auto')),
+    language TEXT DEFAULT 'fr' CHECK (language IN ('fr', 'en', 'es')),
+    notifications_email BOOLEAN DEFAULT TRUE,
+    notifications_push BOOLEAN DEFAULT TRUE,
+    auto_refresh BOOLEAN DEFAULT TRUE,
+    refresh_interval INTEGER DEFAULT 30 CHECK (refresh_interval >= 10 AND refresh_interval <= 300),
+    default_view TEXT DEFAULT 'dashboard' CHECK (default_view IN ('dashboard', 'sites', 'history')),
+    items_per_page INTEGER DEFAULT 10 CHECK (items_per_page IN (5, 10, 20, 50)),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
+    UNIQUE(user_id)
 );
 
--- Enable RLS
-alter table public.user_settings enable row level security;
+-- Index pour améliorer les performances
+CREATE INDEX IF NOT EXISTS idx_user_settings_user_id ON user_settings(user_id);
 
--- Create RLS policies
-create policy "Users can view their own settings"
-  on public.user_settings for select
-  using (auth.uid() = user_id);
+-- Trigger pour mettre à jour updated_at automatiquement
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = TIMEZONE('utc'::text, NOW());
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
 
-create policy "Users can insert their own settings"
-  on public.user_settings for insert
-  with check (auth.uid() = user_id);
+CREATE TRIGGER update_user_settings_updated_at
+    BEFORE UPDATE ON user_settings
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
 
-create policy "Users can update their own settings"
-  on public.user_settings for update
-  using (auth.uid() = user_id)
-  with check (auth.uid() = user_id);
+-- Politiques RLS
+ALTER TABLE user_settings ENABLE ROW LEVEL SECURITY;
 
--- Create updated_at trigger
-create or replace function public.handle_updated_at()
-returns trigger as $$
-begin
-  new.updated_at = now();
-  return new;
-end;
-$$ language plpgsql;
+CREATE POLICY "Utilisateurs peuvent voir leurs propres paramètres" ON user_settings
+    FOR SELECT USING (auth.uid() = user_id);
 
-create trigger handle_updated_at
-  before update on public.user_settings
-  for each row
-  execute procedure public.handle_updated_at();
+CREATE POLICY "Utilisateurs peuvent insérer leurs propres paramètres" ON user_settings
+    FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Utilisateurs peuvent modifier leurs propres paramètres" ON user_settings
+    FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "Utilisateurs peuvent supprimer leurs propres paramètres" ON user_settings
+    FOR DELETE USING (auth.uid() = user_id);
