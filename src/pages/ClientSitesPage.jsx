@@ -27,7 +27,11 @@ import React, { useState, useEffect } from 'react';
 
       useEffect(() => {
         const fetchSites = async () => {
+          console.log("Début de fetchSites");
+          console.log("User:", user);
           const { data, error } = await supabase.from('client_sites').select('*').order('name', { ascending: true });
+          console.log("Données reçues:", data);
+          console.log("Erreur éventuelle:", error);
           if (error) {
             console.error("Erreur de chargement des sites:", error);
             toast({ variant: "destructive", title: "Erreur", description: "Impossible de charger les sites clients." });

@@ -34,12 +34,14 @@ const toastVariants = cva(
 	},
 );
 
-const Toast = React.forwardRef(({ className, variant, ...props }, ref) => {
+const Toast = React.forwardRef(({ className, variant, dismiss, ...props }, ref) => {
+	// Filtrer l'attribut dismiss des props
+	const { dismiss: _, ...otherProps } = props;
 	return (
 		<ToastPrimitives.Root
 			ref={ref}
 			className={cn(toastVariants({ variant }), className)}
-			{...props}
+			{...otherProps}
 		/>
 	);
 });
