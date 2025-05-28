@@ -253,7 +253,7 @@ const SettingsPage = () => {
               <Label htmlFor="fullName">Nom complet</Label>
               <Input
                 id="fullName"
-                value={userSettings.full_name || ''}
+                value={userSettings.full_name ?? ''}
                 onChange={(e) => handleUserSettingChange('full_name', e.target.value)}
                 placeholder="Votre nom complet"
               />
@@ -263,7 +263,7 @@ const SettingsPage = () => {
               <Label htmlFor="company">Entreprise</Label>
               <Input
                 id="company"
-                value={userSettings.company || ''}
+                value={userSettings.company ?? ''}
                 onChange={(e) => handleUserSettingChange('company', e.target.value)}
                 placeholder="Nom de votre entreprise"
               />
@@ -273,7 +273,7 @@ const SettingsPage = () => {
               <Label htmlFor="phone">Téléphone</Label>
               <Input
                 id="phone"
-                value={userSettings.phone || ''}
+                value={userSettings.phone ?? ''}
                 onChange={(e) => handleUserSettingChange('phone', e.target.value)}
                 placeholder="Votre numéro de téléphone"
               />
@@ -445,7 +445,7 @@ const SettingsPage = () => {
               <Label htmlFor="companyName">Nom de l'entreprise</Label>
               <Input
                 id="companyName"
-                value={systemSettings.company_name}
+                value={systemSettings.company_name ?? ''}
                 onChange={(e) => handleSystemSettingChange('company_name', e.target.value)}
                 placeholder="Nom de votre entreprise"
               />
@@ -456,7 +456,7 @@ const SettingsPage = () => {
               <Input
                 id="companyEmail"
                 type="email"
-                value={systemSettings.company_email}
+                value={systemSettings.company_email ?? ''}
                 onChange={(e) => handleSystemSettingChange('company_email', e.target.value)}
                 placeholder="contact@entreprise.com"
               />

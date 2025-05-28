@@ -40,7 +40,20 @@ export const useUserSettings = () => {
       }
 
       if (data) {
-        setSettings(prev => ({ ...prev, ...data }));
+        // S'assurer que toutes les propriétés ont des valeurs par défaut
+        const sanitizedData = {
+          full_name: data.full_name ?? '',
+          company: data.company ?? '',
+          phone: data.phone ?? '',
+          theme: data.theme ?? 'light',
+          notifications_email: data.notifications_email ?? true,
+          notifications_push: data.notifications_push ?? true,
+          auto_refresh: data.auto_refresh ?? true,
+          refresh_interval: data.refresh_interval ?? 30,
+          default_view: data.default_view ?? 'dashboard',
+          items_per_page: data.items_per_page ?? 10
+        };
+        setSettings(prev => ({ ...prev, ...sanitizedData }));
       } else {
         // Créer les paramètres par défaut
         await createDefaultSettings();
