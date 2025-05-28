@@ -32,7 +32,7 @@ ChartJS.register(
 const ReportsPage = () => {
   const [monthlyData, setMonthlyData] = useState(null);
   const [selectedMonth, setSelectedMonth] = useState(new Date().toISOString().slice(0, 7));
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
   // Options pour le graphique
@@ -62,41 +62,39 @@ const ReportsPage = () => {
   };
 
   useEffect(() => {
-    fetchMonthlyData();
+    // Cleanup function pour éviter les problèmes de concurrence
+    let isMounted = true;
+    
+    const loadData = async () => {
+      if (isMounted) {
+        await fetchMonthlyData();
+      }
+    };
+    
+    loadData();
+    
+    return () => {
+      isMounted = false;
+    };
   }, [selectedMonth]);
 
   const fetchMonthlyData = async () => {
     setIsLoading(true);
+    
+    // Réinitialiser les données avant de charger
+    setMonthlyData(null);
+    
     try {
-      // Calculer les dates de début et fin du mois
-      const startDate = new Date(selectedMonth);
-      startDate.setDate(1);
-      const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 0);
+      // Calculer les dates de début et fin du mois avec plus de précision
+      const startDate = new Date(selectedMonth + '-01T00:00:00.000Z');
+      const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 0, 23, 59, 59, 999);
 
-      const { data: dispatches, error: dispatchError } = await supabase
-        .from('dispatches')
-        .select(`
-          quantity,
-          created_at,
-          site_id,
-          client_sites (
-            id,
-            name
-          )
-        `)
-        .gte('created_at', startDate.toISOString())
-        .lte('created_at', endDate.toISOString());
+      console.log(`Chargement des données pour ${selectedMonth}:`, {
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString()
+      });
 
-      if (dispatchError) {
-        console.error('Erreur lors du chargement des envois:', dispatchError);
-        throw dispatchError;
-      }
-
-      if (!dispatches) {
-        throw new Error('Aucune donnée reçue');
-      }
-
-      // Récupérer tous les sites pour s'assurer d'inclure même ceux sans envois
+      // Récupérer tous les sites d'abord
       const { data: allSites, error: sitesError } = await supabase
         .from('client_sites')
         .select('id, name')
@@ -107,41 +105,77 @@ const ReportsPage = () => {
         throw sitesError;
       }
 
-      if (!allSites) {
+      if (!allSites || allSites.length === 0) {
         throw new Error('Aucun site trouvé');
       }
 
-      // Créer un objet avec tous les sites initialisés à 0
-      const siteData = allSites.reduce((acc, site) => {
-        if (site && site.name) {
-          acc[site.name] = 0;
-        }
-        return acc;
-      }, {});
+      // Récupérer les envois pour la période
+      const { data: dispatches, error: dispatchError } = await supabase
+        .from('dispatches')
+        .select(`
+          quantity,
+          created_at,
+          site_id,
+          client_sites!inner (
+            id,
+            name
+          )
+        `)
+        .gte('created_at', startDate.toISOString())
+        .lte('created_at', endDate.toISOString())
+        .order('created_at', { ascending: false });
 
-      // Ajouter les quantités des envois
-      dispatches.forEach(dispatch => {
-        if (dispatch && dispatch.quantity && dispatch.client_sites) {
-          const siteName = dispatch.client_sites.name || 'Site inconnu';
-          siteData[siteName] = (siteData[siteName] || 0) + dispatch.quantity;
+      if (dispatchError) {
+        console.error('Erreur lors du chargement des envois:', dispatchError);
+        throw dispatchError;
+      }
+
+      console.log(`Nombre d'envois trouvés pour ${selectedMonth}:`, dispatches?.length || 0);
+
+      // Créer un objet avec tous les sites initialisés à 0
+      const siteData = {};
+      allSites.forEach(site => {
+        if (site && site.name && site.name.trim() !== '') {
+          siteData[site.name.trim()] = 0;
         }
       });
 
-      // Trier les sites par nom et filtrer les noms vides
+      // Ajouter les quantités des envois
+      if (dispatches && dispatches.length > 0) {
+        dispatches.forEach(dispatch => {
+          if (dispatch && 
+              typeof dispatch.quantity === 'number' && 
+              dispatch.quantity > 0 && 
+              dispatch.client_sites && 
+              dispatch.client_sites.name) {
+            const siteName = dispatch.client_sites.name.trim();
+            if (siteName && siteData.hasOwnProperty(siteName)) {
+              siteData[siteName] += dispatch.quantity;
+            }
+          }
+        });
+      }
+
+      // Trier les sites par nom
       const sortedLabels = Object.keys(siteData)
-        .filter(name => name && name.trim() !== '')
-        .sort((a, b) => a.localeCompare(b, 'fr'));
+        .sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
       
       const chartData = {
         labels: sortedLabels,
         datasets: [{
           label: 'Nombre de manutentionnaires',
-          data: sortedLabels.map(label => siteData[label] || 0),
+          data: sortedLabels.map(label => siteData[label]),
           backgroundColor: 'rgba(53, 162, 235, 0.5)',
           borderColor: 'rgb(53, 162, 235)',
           borderWidth: 1
         }]
       };
+
+      console.log('Données du graphique générées:', {
+        labels: chartData.labels,
+        data: chartData.datasets[0].data,
+        total: chartData.datasets[0].data.reduce((a, b) => a + b, 0)
+      });
 
       setMonthlyData(chartData);
     } catch (error) {
@@ -158,33 +192,54 @@ const ReportsPage = () => {
   };
 
   const generatePDF = async () => {
-    if (!monthlyData || isLoading) return;
+    if (!monthlyData || isLoading) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Aucune donnée disponible pour générer le rapport."
+      });
+      return;
+    }
 
+    const originalLoading = isLoading;
+    
     try {
       setIsLoading(true);
-      const chartElement = document.querySelector("#monthly-chart");
-      if (!chartElement) throw new Error("Élément graphique non trouvé");
+      
+      // Attendre un peu pour que le DOM soit stable
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      const chartElement = document.querySelector("#monthly-chart canvas");
+      if (!chartElement) {
+        throw new Error("Élément graphique non trouvé. Veuillez attendre que le graphique soit chargé.");
+      }
 
-      const canvas = await html2canvas(chartElement);
+      const canvas = await html2canvas(chartElement, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        useCORS: true
+      });
       const imgData = canvas.toDataURL('image/png');
       
       const pdf = new jsPDF('landscape');
       
       // Ajouter le titre
       pdf.setFontSize(20);
-      pdf.text(`Rapport Mensuel - ${new Date(selectedMonth).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}`, 20, 20);
+      const monthName = new Date(selectedMonth + '-01').toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+      pdf.text(`Rapport Mensuel - ${monthName}`, 20, 20);
       
       // Ajouter le graphique
       const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth() - 40; // marges
+      const pdfWidth = pdf.internal.pageSize.getWidth() - 40;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
       pdf.addImage(imgData, 'PNG', 20, 30, pdfWidth, pdfHeight);
       
       // Ajouter les statistiques
-      if (monthlyData) {
-        const total = monthlyData.datasets[0].data.reduce((a, b) => a + b, 0);
-        const maxValue = Math.max(...monthlyData.datasets[0].data);
-        const maxIndex = monthlyData.datasets[0].data.indexOf(maxValue);
+      if (monthlyData && monthlyData.datasets && monthlyData.datasets[0]) {
+        const data = monthlyData.datasets[0].data;
+        const total = data.reduce((a, b) => a + b, 0);
+        const maxValue = Math.max(...data);
+        const maxIndex = data.indexOf(maxValue);
         
         pdf.addPage();
         pdf.setFontSize(18);
@@ -192,11 +247,11 @@ const ReportsPage = () => {
         
         pdf.setFontSize(12);
         const stats = [
-          `Période: ${new Date(selectedMonth).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}`,
+          `Période: ${monthName}`,
           `Total des envois: ${total} manutentionnaires`,
-          `Nombre de sites actifs: ${monthlyData.labels.filter(_, i => monthlyData.datasets[0].data[i] > 0).length}`,
+          `Nombre de sites actifs: ${data.filter(value => value > 0).length}`,
           `Nombre total de sites: ${monthlyData.labels.length}`,
-          `Site le plus actif: ${monthlyData.labels[maxIndex]} (${maxValue} manutentionnaires)`
+          maxValue > 0 ? `Site le plus actif: ${monthlyData.labels[maxIndex]} (${maxValue} manutentionnaires)` : 'Aucune activité ce mois'
         ];
         
         stats.forEach((line, index) => {
@@ -209,7 +264,7 @@ const ReportsPage = () => {
         
         let yPos = 120;
         monthlyData.labels.forEach((site, index) => {
-          const quantity = monthlyData.datasets[0].data[index];
+          const quantity = data[index];
           if (yPos > pdf.internal.pageSize.getHeight() - 20) {
             pdf.addPage();
             yPos = 20;
@@ -230,10 +285,10 @@ const ReportsPage = () => {
       toast({
         variant: "destructive",
         title: "Erreur",
-        description: "Impossible de générer le rapport PDF."
+        description: error.message || "Impossible de générer le rapport PDF."
       });
     } finally {
-      setIsLoading(false);
+      setIsLoading(originalLoading);
     }
   };
 
