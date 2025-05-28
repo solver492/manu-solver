@@ -24,7 +24,6 @@ const SettingsPage = () => {
     full_name: '',
     company: '',
     phone: '',
-    address: '',
     theme: 'light',
     language: 'fr',
     notifications_email: true,
@@ -204,7 +203,6 @@ const SettingsPage = () => {
       full_name: '',
       company: '',
       phone: '',
-      address: '',
       theme: 'light',
       language: 'fr',
       notifications_email: true,
@@ -257,7 +255,7 @@ const SettingsPage = () => {
               <Label htmlFor="fullName">Nom complet</Label>
               <Input
                 id="fullName"
-                value={userSettings.full_name}
+                value={userSettings.full_name || ''}
                 onChange={(e) => handleUserSettingChange('full_name', e.target.value)}
                 placeholder="Votre nom complet"
               />
@@ -267,7 +265,7 @@ const SettingsPage = () => {
               <Label htmlFor="company">Entreprise</Label>
               <Input
                 id="company"
-                value={userSettings.company}
+                value={userSettings.company || ''}
                 onChange={(e) => handleUserSettingChange('company', e.target.value)}
                 placeholder="Nom de votre entreprise"
               />
@@ -277,20 +275,9 @@ const SettingsPage = () => {
               <Label htmlFor="phone">Téléphone</Label>
               <Input
                 id="phone"
-                value={userSettings.phone}
+                value={userSettings.phone || ''}
                 onChange={(e) => handleUserSettingChange('phone', e.target.value)}
                 placeholder="Votre numéro de téléphone"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="address">Adresse</Label>
-              <Textarea
-                id="address"
-                value={userSettings.address}
-                onChange={(e) => handleUserSettingChange('address', e.target.value)}
-                placeholder="Votre adresse"
-                rows={3}
               />
             </div>
 
