@@ -123,7 +123,7 @@ import React, { useState, useEffect } from 'react';
           )}
 
           <motion.div 
-            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
             variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
             initial="hidden"
             animate="visible"

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Users, Truck, Building, CalendarDays, TrendingUp, BarChart3 } from 'lucide-react';
@@ -46,7 +45,7 @@ const DashboardPage = () => {
     siteDistribution: null,
     monthlyActivity: null
   });
-  
+
   const usernameDisplay = user ? getUsername() : 'Utilisateur';
 
   useEffect(() => {
@@ -99,7 +98,7 @@ const DashboardPage = () => {
             siteName: dispatch.client_sites?.name || 'Site inconnu'
           }));
           setDispatches(transformedDispatches);
-          
+
           // Générer les données pour les graphiques
           generateChartData(transformedDispatches, sitesData || []);
         }
@@ -114,7 +113,7 @@ const DashboardPage = () => {
         setLoading(false);
       }
     };
-    
+
     fetchData();
   }, [toast]);
 
@@ -237,7 +236,7 @@ const DashboardPage = () => {
   });
 
   const totalDispatchedThisMonth = dispatchesThisMonth.reduce((sum, dispatch) => sum + (dispatch.quantity || 0), 0);
-  
+
   // Calculer l'activité par site
   const siteActivity = dispatchesThisMonth.reduce((acc, dispatch) => {
     const siteName = dispatch.siteName || 'Site inconnu';
@@ -253,7 +252,7 @@ const DashboardPage = () => {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1 } }
   };
-  
+
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
@@ -355,9 +354,13 @@ const DashboardPage = () => {
       <motion.h2 variants={itemVariants} className="text-3xl font-bold text-primary">
         Bonjour, {usernameDisplay}!
       </motion.h2>
-      
+
       {/* Cartes de statistiques */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+        variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+        initial="hidden"
+        animate="visible"
+      >
         <motion.div variants={itemVariants}>
           <Card className="shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-blue-500 to-blue-600 text-white transform hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -402,7 +405,7 @@ const DashboardPage = () => {
             </CardContent>
           </Card>
         </motion.div>
-        
+
         <motion.div variants={itemVariants}>
           <Card className="shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white transform hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

@@ -93,4 +93,39 @@
     ::-webkit-scrollbar-thumb:hover {
       background: hsl(var(--primary));
     }
+
+    /* Mobile responsive improvements */
+    @media (max-width: 640px) {
+      .text-4xl {
+        @apply text-2xl;
+      }
+      .text-3xl {
+        @apply text-xl;
+      }
+      .text-2xl {
+        @apply text-lg;
+      }
+      .p-6 {
+        @apply p-4;
+      }
+      .px-6 {
+        @apply px-4;
+      }
+      .py-6 {
+        @apply py-4;
+      }
+    }
+
+    /* Ensure cards don't break on small screens */
+    .grid > * {
+      min-width: 0;
+    }
+
+    /* Better touch targets for mobile */
+    @media (max-width: 768px) {
+      button, .button, a[role="button"] {
+        min-height: 44px;
+        min-width: 44px;
+      }
+    }
   
