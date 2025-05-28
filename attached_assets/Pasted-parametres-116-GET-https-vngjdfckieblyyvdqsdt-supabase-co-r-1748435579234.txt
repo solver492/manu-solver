@@ -1,0 +1,484 @@
+parametres:116 
+            
+            
+            GET https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e 406 (Not Acceptable)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"JSON object requested, multiple (or no) rows returned"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:116 
+            
+            
+            GET https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e 406 (Not Acceptable)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"JSON object requested, multiple (or no) rows returned"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:116 
+            
+            
+            POST https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22 400 (Bad Request)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22: {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Erreur lors de la création des paramètres par défaut: {code: 'PGRST204', details: null, hint: null, message: "Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+createDefaultUserSettings @ SettingsPage.jsx:102
+await in createDefaultUserSettings
+loadUserSettings @ SettingsPage.jsx:77
+await in loadUserSettings
+(anonymous) @ SettingsPage.jsx:51
+commitHookEffectListMount @ react-dom.development.js:23189
+commitPassiveMountOnFiber @ react-dom.development.js:24965
+commitPassiveMountEffects_complete @ react-dom.development.js:24930
+commitPassiveMountEffects_begin @ react-dom.development.js:24917
+commitPassiveMountEffects @ react-dom.development.js:24905
+flushPassiveEffectsImpl @ react-dom.development.js:27078
+flushPassiveEffects @ react-dom.development.js:27023
+performSyncWorkOnRoot @ react-dom.development.js:26115
+flushSyncCallbacks @ react-dom.development.js:12042
+commitRootImpl @ react-dom.development.js:26998
+commitRoot @ react-dom.development.js:26721
+finishConcurrentRender @ react-dom.development.js:26020
+performConcurrentWorkOnRoot @ react-dom.development.js:25848
+workLoop @ scheduler.development.js:266
+flushWork @ scheduler.development.js:239
+performWorkUntilDeadline @ scheduler.development.js:533
+parametres:83  Warning: `value` prop on `input` should not be null. Consider using an empty string to clear the component or `undefined` for uncontrolled components.
+    at input
+    at _c (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/components/ui/input.jsx:19:40)
+    at div
+    at div
+    at _c9 (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/components/ui/card.jsx:100:12)
+    at div
+    at _c (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/components/ui/card.jsx:20:11)
+    at div
+    at div
+    at MotionComponent (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/framer-motion.js?v=9e8283c9:278:40)
+    at SettingsPage (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/pages/SettingsPage.jsx:33:20)
+    at div
+    at MotionComponent (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/framer-motion.js?v=9e8283c9:278:40)
+    at PresenceChild (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/framer-motion.js?v=9e8283c9:7103:24)
+    at AnimatePresence (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/framer-motion.js?v=9e8283c9:7169:26)
+    at main
+    at div
+    at div
+    at Layout (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/components/layout/Layout.jsx:24:19)
+    at ProtectedRoute (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/components/auth/ProtectedRoute.jsx:21:27)
+    at RenderedRoute (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/react-router-dom.js?v=9e8283c9:4103:5)
+    at Routes (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/react-router-dom.js?v=9e8283c9:4574:5)
+    at Router (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/react-router-dom.js?v=9e8283c9:4517:15)
+    at BrowserRouter (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/react-router-dom.js?v=9e8283c9:5266:5)
+    at AuthProvider (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/contexts/AuthContext.jsx:21:32)
+    at App
+console.error @ parametres:83
+printWarning @ react-dom.development.js:86
+error @ react-dom.development.js:60
+validateProperties$1 @ react-dom.development.js:3644
+validatePropertiesInDevelopment @ react-dom.development.js:9540
+setInitialProperties @ react-dom.development.js:9830
+finalizeInitialChildren @ react-dom.development.js:10950
+completeWork @ react-dom.development.js:22232
+completeUnitOfWork @ react-dom.development.js:26635
+performUnitOfWork @ react-dom.development.js:26607
+workLoopSync @ react-dom.development.js:26505
+renderRootSync @ react-dom.development.js:26473
+performConcurrentWorkOnRoot @ react-dom.development.js:25777
+workLoop @ scheduler.development.js:266
+flushWork @ scheduler.development.js:239
+performWorkUntilDeadline @ scheduler.development.js:533
+parametres:116 
+            
+            
+            GET https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e 406 (Not Acceptable)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"JSON object requested, multiple (or no) rows returned"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:116 
+            
+            
+            POST https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22 400 (Bad Request)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22: {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Erreur lors de la création des paramètres par défaut: {code: 'PGRST204', details: null, hint: null, message: "Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+createDefaultUserSettings @ SettingsPage.jsx:102
+await in createDefaultUserSettings
+loadUserSettings @ SettingsPage.jsx:77
+await in loadUserSettings
+(anonymous) @ SettingsPage.jsx:51
+commitHookEffectListMount @ react-dom.development.js:23189
+invokePassiveEffectMountInDEV @ react-dom.development.js:25193
+invokeEffectsInDev @ react-dom.development.js:27390
+commitDoubleInvokeEffectsInDEV @ react-dom.development.js:27369
+flushPassiveEffectsImpl @ react-dom.development.js:27095
+flushPassiveEffects @ react-dom.development.js:27023
+performSyncWorkOnRoot @ react-dom.development.js:26115
+flushSyncCallbacks @ react-dom.development.js:12042
+commitRootImpl @ react-dom.development.js:26998
+commitRoot @ react-dom.development.js:26721
+finishConcurrentRender @ react-dom.development.js:26020
+performConcurrentWorkOnRoot @ react-dom.development.js:25848
+workLoop @ scheduler.development.js:266
+flushWork @ scheduler.development.js:239
+performWorkUntilDeadline @ scheduler.development.js:533
+parametres:116 
+            
+            
+            GET https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e 406 (Not Acceptable)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"JSON object requested, multiple (or no) rows returned"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:116 
+            
+            
+            POST https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22 400 (Bad Request)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22: {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Erreur lors de la création des paramètres par défaut: {code: 'PGRST204', details: null, hint: null, message: "Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+createDefaultUserSettings @ SettingsPage.jsx:102
+await in createDefaultUserSettings
+loadUserSettings @ SettingsPage.jsx:77
+await in loadUserSettings
+(anonymous) @ SettingsPage.jsx:51
+commitHookEffectListMount @ react-dom.development.js:23189
+commitPassiveMountOnFiber @ react-dom.development.js:24965
+commitPassiveMountEffects_complete @ react-dom.development.js:24930
+commitPassiveMountEffects_begin @ react-dom.development.js:24917
+commitPassiveMountEffects @ react-dom.development.js:24905
+flushPassiveEffectsImpl @ react-dom.development.js:27078
+flushPassiveEffects @ react-dom.development.js:27023
+performSyncWorkOnRoot @ react-dom.development.js:26115
+flushSyncCallbacks @ react-dom.development.js:12042
+commitRootImpl @ react-dom.development.js:26998
+commitRoot @ react-dom.development.js:26721
+finishConcurrentRender @ react-dom.development.js:26020
+performConcurrentWorkOnRoot @ react-dom.development.js:25848
+workLoop @ scheduler.development.js:266
+flushWork @ scheduler.development.js:239
+performWorkUntilDeadline @ scheduler.development.js:533
+parametres:116 
+            
+            
+            GET https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e 406 (Not Acceptable)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"JSON object requested, multiple (or no) rows returned"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:116 
+            
+            
+            POST https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22 400 (Bad Request)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22: {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Erreur lors de la création des paramètres par défaut: {code: 'PGRST204', details: null, hint: null, message: "Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+createDefaultUserSettings @ SettingsPage.jsx:102
+await in createDefaultUserSettings
+loadUserSettings @ SettingsPage.jsx:77
+await in loadUserSettings
+(anonymous) @ SettingsPage.jsx:51
+commitHookEffectListMount @ react-dom.development.js:23189
+commitPassiveMountOnFiber @ react-dom.development.js:24965
+commitPassiveMountEffects_complete @ react-dom.development.js:24930
+commitPassiveMountEffects_begin @ react-dom.development.js:24917
+commitPassiveMountEffects @ react-dom.development.js:24905
+flushPassiveEffectsImpl @ react-dom.development.js:27078
+flushPassiveEffects @ react-dom.development.js:27023
+(anonymous) @ react-dom.development.js:26808
+workLoop @ scheduler.development.js:266
+flushWork @ scheduler.development.js:239
+performWorkUntilDeadline @ scheduler.development.js:533
+parametres:116 
+            
+            
+            POST https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22 400 (Bad Request)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22: {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Erreur lors de la création des paramètres par défaut: {code: 'PGRST204', details: null, hint: null, message: "Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+createDefaultUserSettings @ SettingsPage.jsx:102
+await in createDefaultUserSettings
+loadUserSettings @ SettingsPage.jsx:77
+await in loadUserSettings
+(anonymous) @ SettingsPage.jsx:51
+commitHookEffectListMount @ react-dom.development.js:23189
+commitPassiveMountOnFiber @ react-dom.development.js:24965
+commitPassiveMountEffects_complete @ react-dom.development.js:24930
+commitPassiveMountEffects_begin @ react-dom.development.js:24917
+commitPassiveMountEffects @ react-dom.development.js:24905
+flushPassiveEffectsImpl @ react-dom.development.js:27078
+flushPassiveEffects @ react-dom.development.js:27023
+(anonymous) @ react-dom.development.js:26808
+workLoop @ scheduler.development.js:266
+flushWork @ scheduler.development.js:239
+performWorkUntilDeadline @ scheduler.development.js:533
+parametres:116 
+            
+            
+            GET https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e 406 (Not Acceptable)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"JSON object requested, multiple (or no) rows returned"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:116 
+            
+            
+            POST https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22 400 (Bad Request)
+window.fetch @ parametres:116
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22address%22%2C%22theme%22%2C%22language%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22: {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'address' column of 'user_settings' in the schema cache"}
+console.error @ parametres:83
+(anonymous) @ parametres:129
+Promise.then
+window.fetch @ parametres:117
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+parametres:83  Erreur lors de la création des paramètres par défaut: {code: 'PGRST204', details: null, hint: null, message: "Could not find the 'address' column of 'user_settings' in the schema cache"}
