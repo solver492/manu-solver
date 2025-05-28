@@ -62,34 +62,48 @@ const ReportsPage = () => {
   };
 
   useEffect(() => {
-    // Cleanup function pour éviter les problèmes de concurrence
-    let isMounted = true;
+    let isCancelled = false;
     
     const loadData = async () => {
-      if (isMounted) {
-        await fetchMonthlyData();
+      setIsLoading(true);
+      setMonthlyData(null); // Réinitialiser immédiatement
+      
+      try {
+        const data = await fetchMonthlyData(selectedMonth);
+        if (!isCancelled) {
+          setMonthlyData(data);
+        }
+      } catch (error) {
+        if (!isCancelled) {
+          console.error('Erreur lors du chargement des données:', error);
+          toast({
+            variant: "destructive",
+            title: "Erreur",
+            description: error.message || "Impossible de charger les données mensuelles."
+          });
+          setMonthlyData(null);
+        }
+      } finally {
+        if (!isCancelled) {
+          setIsLoading(false);
+        }
       }
     };
     
     loadData();
     
     return () => {
-      isMounted = false;
+      isCancelled = true;
     };
   }, [selectedMonth]);
 
-  const fetchMonthlyData = async () => {
-    setIsLoading(true);
-    
-    // Réinitialiser les données avant de charger
-    setMonthlyData(null);
-    
+  const fetchMonthlyData = async (monthToFetch) => {
     try {
       // Calculer les dates de début et fin du mois avec plus de précision
-      const startDate = new Date(selectedMonth + '-01T00:00:00.000Z');
+      const startDate = new Date(monthToFetch + '-01T00:00:00.000Z');
       const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 0, 23, 59, 59, 999);
 
-      console.log(`Chargement des données pour ${selectedMonth}:`, {
+      console.log(`Chargement des données pour ${monthToFetch}:`, {
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString()
       });
@@ -130,7 +144,7 @@ const ReportsPage = () => {
         throw dispatchError;
       }
 
-      console.log(`Nombre d'envois trouvés pour ${selectedMonth}:`, dispatches?.length || 0);
+      console.log(`Nombre d'envois trouvés pour ${monthToFetch}:`, dispatches?.length || 0);
 
       // Créer un objet avec tous les sites initialisés à 0
       const siteData = {};
@@ -177,17 +191,10 @@ const ReportsPage = () => {
         total: chartData.datasets[0].data.reduce((a, b) => a + b, 0)
       });
 
-      setMonthlyData(chartData);
+      return chartData;
     } catch (error) {
       console.error('Erreur lors du chargement des données:', error);
-      toast({
-        variant: "destructive",
-        title: "Erreur",
-        description: error.message || "Impossible de charger les données mensuelles."
-      });
-      setMonthlyData(null);
-    } finally {
-      setIsLoading(false);
+      throw error;
     }
   };
 
