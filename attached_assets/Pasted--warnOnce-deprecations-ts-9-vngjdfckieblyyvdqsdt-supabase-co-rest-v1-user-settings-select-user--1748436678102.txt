@@ -1,0 +1,87 @@
+.
+warnOnce @ deprecations.ts:9
+vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e:1 
+            
+            
+            Failed to load resource: the server responded with a status of 406 ()
+VM8:4  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"JSON object requested, multiple (or no) rows returned"}
+console.error @ VM8:4
+vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e:1 
+            
+            
+            Failed to load resource: the server responded with a status of 406 ()
+VM8:4  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?select=*&user_id=eq.86a01f3b-4ba4-4cfe-8a52-c8c2dd29fc2e: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"JSON object requested, multiple (or no) rows returned"}
+console.error @ VM8:4
+vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22theme%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22:1 
+            
+            
+            Failed to load resource: the server responded with a status of 400 ()
+VM8:4  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22theme%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22: {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'auto_refresh' column of 'user_settings' in the schema cache"}
+console.error @ VM8:4
+VM8:4  Erreur lors de la création des paramètres par défaut: Object
+console.error @ VM8:4
+VM8:4  Warning: `value` prop on `input` should not be null. Consider using an empty string to clear the component or `undefined` for uncontrolled components.
+    at input
+    at _c (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/components/ui/input.jsx:19:40)
+    at div
+    at div
+    at _c9 (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/components/ui/card.jsx:100:12)
+    at div
+    at _c (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/components/ui/card.jsx:20:11)
+    at div
+    at div
+    at MotionComponent (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/framer-motion.js?v=9e8283c9:278:40)
+    at SettingsPage (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/pages/SettingsPage.jsx:33:20)
+    at div
+    at MotionComponent (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/framer-motion.js?v=9e8283c9:278:40)
+    at PresenceChild (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/framer-motion.js?v=9e8283c9:7103:24)
+    at AnimatePresence (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/framer-motion.js?v=9e8283c9:7169:26)
+    at main
+    at div
+    at div
+    at Layout (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/components/layout/Layout.jsx:24:19)
+    at ProtectedRoute (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/components/auth/ProtectedRoute.jsx:21:27)
+    at RenderedRoute (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/react-router-dom.js?v=9e8283c9:4103:5)
+    at Routes (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/react-router-dom.js?v=9e8283c9:4574:5)
+    at Router (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/react-router-dom.js?v=9e8283c9:4517:15)
+    at BrowserRouter (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/node_modules/.vite/deps/react-router-dom.js?v=9e8283c9:5266:5)
+    at AuthProvider (https://e5be5403-bd5b-4c78-b71f-fced70785eba-00-1dt7hx9209bnz.spock.replit.dev:5173/src/contexts/AuthContext.jsx:21:32)
+    at App
+console.error @ VM8:4
+vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22theme%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22:1 
+            
+            
+            Failed to load resource: the server responded with a status of 400 ()
+VM8:4  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings?columns=%22user_id%22%2C%22full_name%22%2C%22company%22%2C%22phone%22%2C%22theme%22%2C%22notifications_email%22%2C%22notifications_push%22%2C%22auto_refresh%22%2C%22refresh_interval%22%2C%22default_view%22%2C%22items_per_page%22: {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'auto_refresh' column of 'user_settings' in the schema cache"}
+console.error @ VM8:4
+VM8:4  Erreur lors de la création des paramètres par défaut: Object
+console.error @ VM8:4
+VM9:12 
+            
+            
+            POST https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings 400 (Bad Request)
+window.fetch @ VM9:12
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+VM8:4  Fetch error from https://vngjdfckieblyyvdqsdt.supabase.co/rest/v1/user_settings: {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'auto_refresh' column of 'user_settings' in the schema cache"}
+console.error @ VM8:4
+(anonymous) @ VM9:25
+Promise.then
+window.fetch @ VM9:13
+(anonymous) @ fetch.ts:15
+(anonymous) @ fetch.ts:46
+fulfilled @ fetch.ts:2
+Promise.then
+step @ fetch.ts:2
+(anonymous) @ fetch.ts:2
+__awaiter6 @ fetch.ts:2
+(anonymous) @ fetch.ts:34
+then @ PostgrestBuilder.ts:101
+VM8:4  Erreur lors de la sauvegarde: {code: 'PGRST204', details: null, hint: null, message: "Could not find the 'auto_refresh' column of 'user_settings' in the schema cache"}
