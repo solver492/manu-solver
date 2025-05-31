@@ -140,15 +140,35 @@ const SettingsPage = () => {
 
     setIsSaving(true);
     try {
-      const { error } = await supabase
+      // D'abord vérifier si l'enregistrement existe
+      const { data: existingSettings } = await supabase
         .from('user_settings')
-        .upsert({
-          user_id: user.id,
-          ...userSettings,
-          updated_at: new Date().toISOString()
-        });
+        .select('id')
+        .eq('user_id', user.id)
+        .single();
 
-      if (error) throw error;
+      let result;
+      if (existingSettings) {
+        // Mettre à jour l'enregistrement existant
+        result = await supabase
+          .from('user_settings')
+          .update({
+            ...userSettings,
+            updated_at: new Date().toISOString()
+          })
+          .eq('user_id', user.id);
+      } else {
+        // Créer un nouvel enregistrement
+        result = await supabase
+          .from('user_settings')
+          .insert({
+            user_id: user.id,
+            ...userSettings,
+            updated_at: new Date().toISOString()
+          });
+      }
+
+      if (result.error) throw result.error;
 
       toast({
         title: "Succès",
