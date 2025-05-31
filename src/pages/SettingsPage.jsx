@@ -384,6 +384,15 @@ const SettingsPage = () => {
               <p>• Thème adaptatif pour le confort visuel</p>
               <p>• Navigation optimisée pour la productivité</p>
             </div>
+
+            <Button 
+              onClick={saveUserSettings} 
+              disabled={isSaving}
+              className="w-full flex items-center justify-center mt-4"
+            >
+              <Save className="mr-2 h-4 w-4" />
+              {isSaving ? 'Sauvegarde...' : 'Sauvegarder les préférences'}
+            </Button>
           </CardContent>
         </Card>
 
