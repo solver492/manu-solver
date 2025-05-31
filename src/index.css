@@ -5,65 +5,65 @@
 
     @layer base {
       :root {
-        --background: 0 0% 100%;
-        --foreground: 222.2 84% 4.9%;
+        --background: 0 0% 98%; /* Blanc satiné */
+        --foreground: 0 0% 20%; /* Gris nardo foncé */
 
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
+        --card: 0 0% 98%; /* Blanc satiné */
+        --card-foreground: 0 0% 20%; /* Gris nardo foncé */
 
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 84% 4.9%;
+        --popover: 0 0% 98%; /* Blanc satiné */
+        --popover-foreground: 0 0% 20%; /* Gris nardo foncé */
 
-        --primary: 222.2 47.4% 11.2%; /* Dark Blue */
-        --primary-foreground: 210 40% 98%;
+        --primary: 20 100% 50%; /* Orange vif */
+        --primary-foreground: 0 0% 98%; /* Blanc satiné */
 
-        --secondary: 210 40% 96.1%; /* Light Grayish Blue */
-        --secondary-foreground: 222.2 47.4% 11.2%;
+        --secondary: 0 0% 45%; /* Gris nardo moyen */
+        --secondary-foreground: 0 0% 98%; /* Blanc satiné */
 
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
+        --muted: 0 0% 92%; /* Gris très clair */
+        --muted-foreground: 0 0% 35%; /* Gris nardo */
 
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
+        --accent: 20 90% 55%; /* Orange vif légèrement plus clair */
+        --accent-foreground: 0 0% 98%; /* Blanc satiné */
 
         --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
+        --destructive-foreground: 0 0% 98%;
 
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 222.2 84% 4.9%;
+        --border: 0 0% 85%; /* Gris clair pour les bordures */
+        --input: 0 0% 85%; /* Gris clair pour les inputs */
+        --ring: 20 100% 50%; /* Orange vif pour les focus rings */
 
         --radius: 0.5rem;
       }
 
       .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
+        --background: 0 0% 25%; /* Gris nardo foncé */
+        --foreground: 0 0% 98%; /* Blanc satiné */
 
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
+        --card: 0 0% 30%; /* Gris nardo moyen-foncé */
+        --card-foreground: 0 0% 98%; /* Blanc satiné */
 
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
+        --popover: 0 0% 30%; /* Gris nardo moyen-foncé */
+        --popover-foreground: 0 0% 98%; /* Blanc satiné */
 
-        --primary: 210 40% 98%;
-        --primary-foreground: 222.2 47.4% 11.2%;
+        --primary: 20 100% 55%; /* Orange vif */
+        --primary-foreground: 0 0% 20%; /* Gris nardo foncé */
 
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
+        --secondary: 0 0% 40%; /* Gris nardo */
+        --secondary-foreground: 0 0% 98%; /* Blanc satiné */
 
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
+        --muted: 0 0% 35%; /* Gris nardo moyen */
+        --muted-foreground: 0 0% 70%; /* Gris clair */
 
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
+        --accent: 20 90% 55%; /* Orange vif légèrement plus clair */
+        --accent-foreground: 0 0% 20%; /* Gris nardo foncé */
 
         --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
+        --destructive-foreground: 0 0% 98%;
 
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 212.7 26.8% 83.9%;
+        --border: 0 0% 40%; /* Gris nardo pour les bordures */
+        --input: 0 0% 40%; /* Gris nardo pour les inputs */
+        --ring: 20 100% 55%; /* Orange vif pour les focus rings */
       }
     }
 
