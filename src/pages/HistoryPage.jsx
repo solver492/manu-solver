@@ -182,28 +182,28 @@ const HistoryPage = () => {
       </div>
 
       <Table>
-        <TableCaption>Liste des envois de manutentionnaires. Total: {filteredDispatches.length} enregistrements.</TableCaption>
+        <TableCaption className="text-white">Liste des envois de manutentionnaires. Total: {filteredDispatches.length} enregistrements.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Site Client</TableHead>
-            <TableHead className="text-center">Quantité</TableHead>
-            <TableHead>Commentaire</TableHead>
-            <TableHead>Date et Heure</TableHead>
-            <TableHead>Utilisateur</TableHead>
+            <TableHead className="text-white">Site Client</TableHead>
+            <TableHead className="text-center text-white">Quantité</TableHead>
+            <TableHead className="text-white">Commentaire</TableHead>
+            <TableHead className="text-white">Date et Heure</TableHead>
+            <TableHead className="text-white">Utilisateur</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {currentItems.length > 0 ? currentItems.map((dispatch) => (
             <TableRow key={dispatch.id}>
-              <TableCell className="font-medium">{dispatch.siteName}</TableCell>
-              <TableCell className="text-center">{dispatch.quantity}</TableCell>
-              <TableCell className="max-w-xs truncate">{dispatch.comment || '-'}</TableCell>
-              <TableCell>{new Date(dispatch.timestamp).toLocaleString('fr-FR')}</TableCell>
-              <TableCell>{dispatch.username || 'N/A'}</TableCell>
+              <TableCell className="font-medium text-white">{dispatch.siteName}</TableCell>
+              <TableCell className="text-center text-white">{dispatch.quantity}</TableCell>
+              <TableCell className="max-w-xs truncate text-white">{dispatch.comment || '-'}</TableCell>
+              <TableCell className="text-white">{new Date(dispatch.timestamp).toLocaleString('fr-FR')}</TableCell>
+              <TableCell className="text-white">{dispatch.username || 'N/A'}</TableCell>
             </TableRow>
           )) : (
             <TableRow>
-              <TableCell colSpan={5} className="text-center text-muted-foreground">
+              <TableCell colSpan={5} className="text-center text-white">
                 {allDispatches.length === 0 ? "Chargement de l'historique..." : "Aucun envoi ne correspond aux filtres."}
               </TableCell>
             </TableRow>
