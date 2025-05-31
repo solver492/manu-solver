@@ -212,22 +212,7 @@ const SettingsPage = () => {
     }));
   };
 
-  const resetUserSettings = () => {
-    setUserSettings({
-      full_name: '',
-      company: '',
-      phone: '',
-      theme: 'light',
-      notifications_email: true,
-      notifications_push: true,
-      default_view: 'dashboard',
-      items_per_page: 10
-    });
-    toast({
-      title: "Paramètres réinitialisés",
-      description: "Les paramètres ont été remis aux valeurs par défaut."
-    });
-  };
+  
 
   if (isLoading) {
     return (
@@ -292,24 +277,14 @@ const SettingsPage = () => {
               />
             </div>
 
-            <div className="flex justify-between">
-              <Button 
-                onClick={saveUserSettings} 
-                disabled={isSaving}
-                className="flex items-center"
-              >
-                <Save className="mr-2 h-4 w-4" />
-                {isSaving ? 'Sauvegarde...' : 'Sauvegarder'}
-              </Button>
-              <Button 
-                variant="outline" 
-                onClick={resetUserSettings}
-                disabled={isSaving}
-              >
-                <RefreshCw className="mr-2 h-4 w-4" />
-                Réinitialiser
-              </Button>
-            </div>
+            <Button 
+              onClick={saveUserSettings} 
+              disabled={isSaving}
+              className="flex items-center w-full"
+            >
+              <Save className="mr-2 h-4 w-4" />
+              {isSaving ? 'Sauvegarde...' : 'Sauvegarder'}
+            </Button>
           </CardContent>
         </Card>
 
