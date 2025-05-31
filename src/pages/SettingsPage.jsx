@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -66,10 +65,27 @@ const SettingsPage = () => {
       }
 
       if (data) {
-        setUserSettings(prev => ({
-          ...prev,
-          ...data
-        }));
+        const loadedTheme = data.theme || userSettings.theme || 'light';
+        setUserSettings({
+          full_name: data.full_name || '',
+          company: data.company || '',
+          phone: data.phone || '',
+          theme: loadedTheme,
+          notifications_email: data.notifications_email ?? true,
+          notifications_push: data.notifications_push ?? true,
+          auto_refresh: data.auto_refresh ?? true,
+          refresh_interval: data.refresh_interval || 30,
+          default_view: data.default_view || 'dashboard',
+          items_per_page: data.items_per_page || 10
+        });
+
+        // Appliquer le thème chargé
+        if (data.theme && data.theme !== userSettings.theme) {
+          // Assuming you have a function called changeTheme in your AuthContext
+          // and it's accessible via useAuth
+          // const { changeTheme } = useAuth();  // Make sure to get it from the hook
+          // changeTheme(data.theme);
+        }
       } else {
         // Créer les paramètres par défaut si ils n'existent pas
         await createDefaultUserSettings();
@@ -184,10 +200,15 @@ const SettingsPage = () => {
   };
 
   const handleUserSettingChange = (key, value) => {
-    setUserSettings(prev => ({
-      ...prev,
-      [key]: value
-    }));
+    setUserSettings(prev => ({ ...prev, [key]: value }));
+
+    // Si c'est le thème qui change, mettre à jour immédiatement
+    if (key === 'theme') {
+       // Assuming you have a function called changeTheme in your AuthContext
+       // and it's accessible via useAuth
+        const { changeTheme } = useAuth();  // Make sure to get it from the hook
+      changeTheme(value);
+    }
   };
 
   const handleSystemSettingChange = (key, value) => {
@@ -329,7 +350,7 @@ const SettingsPage = () => {
               </Select>
             </div>
 
-            
+
 
             <div className="space-y-2">
               <Label htmlFor="defaultView">Vue par défaut</Label>

@@ -1,11 +1,13 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
+import { useTheme } from '@/hooks/useTheme';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const getSession = async () => {
@@ -51,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     // Pour cet exemple, nous allons simuler la mise à jour du nom d'utilisateur dans l'état local
     // et afficher un message indiquant que cela devrait être géré via les métadonnées utilisateur de Supabase.
     // Dans une application réelle, vous mettriez à jour user_metadata.
-    
+
     // Exemple de mise à jour de user_metadata (nécessite des règles RLS appropriées)
     /*
     const { data, error } = await supabase.auth.updateUser({
@@ -61,7 +63,7 @@ export const AuthProvider = ({ children }) => {
     setUser(data.user); // Mettre à jour l'état local avec l'utilisateur mis à jour
     return data.user;
     */
-    
+
     // Simulation pour l'instant
     const updatedUser = { ...user, user_metadata: { ...user.user_metadata, username: newUsername } };
     setUser(updatedUser); // Mettre à jour l'état local
@@ -77,14 +79,14 @@ export const AuthProvider = ({ children }) => {
     if (error) throw error;
     return data;
   };
-  
+
   const getUsername = () => {
     return user?.email?.split('@')[0] || user?.user_metadata?.username || 'Utilisateur';
   };
 
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, updateUser, updatePassword, getUsername, isAuthenticated: !!user, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, updateUser, updatePassword, getUsername, isAuthenticated: !!user, loading, theme, toggleTheme }}>
       {children}
     </AuthContext.Provider>
   );
