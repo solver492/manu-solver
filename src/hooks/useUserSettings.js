@@ -42,16 +42,16 @@ export const useUserSettings = () => {
       if (data) {
         // S'assurer que toutes les propriétés ont des valeurs par défaut
         const sanitizedData = {
-          full_name: data.full_name ?? '',
-          company: data.company ?? '',
-          phone: data.phone ?? '',
-          theme: data.theme ?? 'light',
+          full_name: data.full_name || '',
+          company: data.company || '',
+          phone: data.phone || '',
+          theme: data.theme || 'light',
           notifications_email: data.notifications_email ?? true,
           notifications_push: data.notifications_push ?? true,
           auto_refresh: data.auto_refresh ?? true,
           refresh_interval: data.refresh_interval ?? 30,
-          default_view: data.default_view ?? 'dashboard',
-          items_per_page: data.items_per_page ?? 10
+          default_view: data.default_view || 'dashboard',
+          items_per_page: data.items_per_page || 10
         };
         setSettings(prev => ({ ...prev, ...sanitizedData }));
       } else {
@@ -59,6 +59,7 @@ export const useUserSettings = () => {
         await createDefaultSettings();
       }
     } catch (err) {
+      console.error('Erreur lors du chargement des paramètres:', err);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -76,6 +77,7 @@ export const useUserSettings = () => {
 
       if (error) throw error;
     } catch (err) {
+      console.error('Erreur lors de la création des paramètres par défaut:', err);
       setError(err.message);
     }
   };
@@ -95,6 +97,7 @@ export const useUserSettings = () => {
       setSettings(prev => ({ ...prev, ...newSettings }));
       return { success: true };
     } catch (err) {
+      console.error('Erreur lors de la mise à jour des paramètres:', err);
       setError(err.message);
       return { success: false, error: err.message };
     }
