@@ -26,8 +26,6 @@ const SettingsPage = () => {
     theme: 'light',
     notifications_email: true,
     notifications_push: true,
-    auto_refresh: true,
-    refresh_interval: 30,
     default_view: 'dashboard',
     items_per_page: 10
   });
@@ -73,8 +71,6 @@ const SettingsPage = () => {
           theme: loadedTheme,
           notifications_email: data.notifications_email ?? true,
           notifications_push: data.notifications_push ?? true,
-          auto_refresh: data.auto_refresh ?? true,
-          refresh_interval: data.refresh_interval || 30,
           default_view: data.default_view || 'dashboard',
           items_per_page: data.items_per_page || 10
         });
@@ -204,10 +200,8 @@ const SettingsPage = () => {
 
     // Si c'est le thème qui change, mettre à jour immédiatement
     if (key === 'theme') {
-       // Assuming you have a function called changeTheme in your AuthContext
-       // and it's accessible via useAuth
-        const { changeTheme } = useAuth();  // Make sure to get it from the hook
-      changeTheme(value);
+      // Le thème sera appliqué lors de la sauvegarde
+      console.log('Thème sélectionné:', value);
     }
   };
 
@@ -226,8 +220,6 @@ const SettingsPage = () => {
       theme: 'light',
       notifications_email: true,
       notifications_push: true,
-      auto_refresh: true,
-      refresh_interval: 30,
       default_view: 'dashboard',
       items_per_page: 10
     });
@@ -387,28 +379,11 @@ const SettingsPage = () => {
               </Select>
             </div>
 
-            <div className="flex items-center justify-between">
-              <Label htmlFor="autoRefresh">Actualisation automatique</Label>
-              <Switch
-                id="autoRefresh"
-                checked={userSettings.auto_refresh}
-                onCheckedChange={(checked) => handleUserSettingChange('auto_refresh', checked)}
-              />
+            <div className="text-sm text-muted-foreground">
+              <p>• Interface personnalisable selon vos préférences</p>
+              <p>• Thème adaptatif pour le confort visuel</p>
+              <p>• Navigation optimisée pour la productivité</p>
             </div>
-
-            {userSettings.auto_refresh && (
-              <div className="space-y-2">
-                <Label htmlFor="refreshInterval">Intervalle d'actualisation (secondes)</Label>
-                <Input
-                  id="refreshInterval"
-                  type="number"
-                  min="10"
-                  max="300"
-                  value={userSettings.refresh_interval}
-                  onChange={(e) => handleUserSettingChange('refresh_interval', parseInt(e.target.value))}
-                />
-              </div>
-            )}
           </CardContent>
         </Card>
 
